@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% load static %}
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="d-flex justify-content-center form-container">
+
+      <form method="POST" class="form-control " style="width:80%">
+        {% csrf_token %}
+
+         {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{form.non_field_errors}}</div>
+        {% endif %}
+        
+        <div class="mb-3">
+
+          {% for field in form %}
+
+              <div>{{field.label_tag}}</div>
+
+              <div>{{field}}</div>
+              
+              {{field.errors}}
+
+          {% endfor %}
+
+          <button type="submit" class="btn btn-primary mt-3">Login</button>
+        </div>
+      </form>
+    </div>
+{% endblock content %}
