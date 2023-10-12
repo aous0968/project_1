@@ -11,8 +11,11 @@ class MyLoginView(LoginView):
     def get_success_url(self) -> str:
         return reverse_lazy('home')
     authentication_form = CustomAuthenticationForm
+    extra_context={'password':'lock' , 'username' : 'user'}
+    
+    
 
-@login_required(redirect_field_name="login")
+@login_required(login_url="My_login",redirect_field_name="")
 def home(request, *args, **kwargs):
     context = {}
 

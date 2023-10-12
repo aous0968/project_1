@@ -25,5 +25,5 @@ from web_site.views import (
 urlpatterns = [
     path("", home, name="home"),
     path("register/", register, name="register"),
-    path("login/", MyLoginView.as_view(), name="login"),
+    path("login/", MyLoginView.as_view(), name="My_login"),
 ]

@@ -3,14 +3,13 @@
 
 {% block stylesheets %}
   {{ block.super }}
-  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}?v=0.2">
 {% endblock stylesheets %}
 
 {% block content %}
-
     <div class="d-flex justify-content-center form-container">
-
-      <form method="POST" class="form-control " style="width:80%">
+      
+      <form method="POST" class="form-control login-form">
         {% csrf_token %}
 
          {% if form.non_field_errors %}
@@ -23,14 +22,21 @@
 
               <div>{{field.label_tag}}</div>
 
-              <div>{{field}}</div>
+              <div class="login-input" id="{{field.name}}">
+                {{field}}
+              </div>
               
               {{field.errors}}
 
           {% endfor %}
 
-          <button type="submit" class="btn btn-primary mt-3">Login</button>
+          <button type="submit" class="btn btn-auth-form mt-3">Login</button>
         </div>
       </form>
     </div>
 {% endblock content %}
+
+{% block javascripts %}
+    {{block.super}}
+    <script src="{% static "js/login.js" %}"></script>
+{% endblock javascripts %}
