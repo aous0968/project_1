@@ -32,12 +32,12 @@ body {
     -1px -1px 2px black; */
     text-shadow: 3px 0 #5f5f5f,9px 8px 0 rgba(0,0,0,0.15);
 }
-.btn-auth-top{
-    color: white;
+.a-top{
+    border-radius: 10px;
 }
-.btn-auth-top:hover{
+.a-top:hover{
     color: white;
-    background-color: #1c1c1c;
+    background-color: #313131;
 }
 
 
@@ -54,4 +54,17 @@ body {
 
 .footer-icon{
     color: white !important;
+}
+
+.auth-icon {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c1c1c;
+  border-bottom-right-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  min-width: 40px;
+  border: 1px solid;
+  border-left: 0;
 }

@@ -17,6 +17,10 @@ input {
   border-bottom-right-radius: 0 !important;
   border-top-right-radius: 0 !important;
 }
+input::placeholder {
+  color: white !important;
+  opacity: 0.3 !important;
+}
 .login-input {
   display: flex;
 }

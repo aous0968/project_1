@@ -1,10 +1,19 @@
 {% extends "base.html" %}
+{% load static %}
+
+
+{% block stylesheets %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/register.css' %}?v=0.1">
+{% endblock stylesheets %}
+
 
 {% block content %}
 <div class="d-flex justify-content-center form-container">
-      
-    <form method="POST" class="form-control login-form">
-      {% csrf_token %}
+  <form method="POST" class="form-control login-form">
+    {% csrf_token %}
+    <h1> Sign Up </h1>
+      <p>Please write your information to make an account:</p>
 
        {% if form.non_field_errors %}
           <div class="alert alert-danger">{{form.non_field_errors}}</div>
@@ -14,7 +23,7 @@
 
         {% for field in form %}
 
-            <div>{{field.label_tag}}</div>
+            <div>{{field.label_tag|title}}</div>
 
             <div class="login-input" id="{{field.name}}">
               {{field}}
@@ -24,8 +33,13 @@
 
         {% endfor %}
 
-        <button type="submit" class="btn btn-auth-form mt-3">Login</button>
+        <button type="submit" class="btn btn-auth-form mt-3">Sign Up</button>
       </div>
     </form>
   </div>
 {% endblock content %}
+
+{% block javascripts %}
+    {{block.super}}
+    <script src="{% static "js/register.js" %}"></script>
+{% endblock javascripts %}

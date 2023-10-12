@@ -20,7 +20,7 @@
     />
     {% comment %} link to fontawesome {% endcomment %}
     <link rel="stylesheet" href="{% static '/icons/fontawesome-free-6.4.2-web/css/all.css' %}"> 
-    <link rel="stylesheet" href="{% static 'css/base.css' %}?v=0.2"> 
+    <link rel="stylesheet" href="{% static 'css/base.css' %}?v=0.3"> 
 
     {% endblock stylesheets %}
 
@@ -34,16 +34,23 @@
   
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
               <li>
-                <a href="{% url "home" %}" class="nav-link text-white">
+                <a href="{% url "home" %}" class="nav-link text-white a-top">
                   <i class="fa-solid fa-house"></i>
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" class="nav-link text-white">
-                  {% comment %} <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
-                  Dashboard {% endcomment %}
+                {% if request.path == "/login/" %}
+                <a href="{% url "register" %}" class="nav-link text-white a-top">
+                  <i class="fa-solid fa-user-plus"></i>
+                  Sign Up
                 </a>
+                {% elif request.path == "/register/" %}
+                <a href="{% url "My_login" %}" class="nav-link text-white a-top">
+                  <i class="fa-solid fa-right-to-bracket"></i>
+                  Login
+                </a>
+                {% endif %}
               </li>
               <li>
                 <a href="#" class="nav-link text-white">
@@ -64,18 +71,6 @@
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
-      </div>
-      <div class="px-3 py-2  mb-3">
-        <div class="container d-flex flex-wrap justify-content-start">
-          <div class="text-end">
-              {% if request.path == "/login/" %}
-              <span style="color:white">You Don't have an account :</span>
-              <a href="{% url "register" %}"><button class="btn btn-auth-top">Sign Up</button></a>
-              {% elif request.path == "/register/" %}
-              <a href="{% url "My_login" %}"><button class="btn btn-auth-top">Login</button></a>
-              {% endif %}
           </div>
         </div>
       </div>

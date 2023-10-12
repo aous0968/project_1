@@ -11,7 +11,8 @@
       
       <form method="POST" class="form-control login-form">
         {% csrf_token %}
-
+        <h1> Login </h1>
+        <p>Please write your information to login:</p>
          {% if form.non_field_errors %}
             <div class="alert alert-danger">{{form.non_field_errors}}</div>
         {% endif %}
@@ -20,7 +21,7 @@
 
           {% for field in form %}
 
-              <div>{{field.label_tag}}</div>
+              <div>{{field.label_tag|title}}</div>
 
               <div class="login-input" id="{{field.name}}">
                 {{field}}

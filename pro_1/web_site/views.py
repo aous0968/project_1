@@ -23,10 +23,11 @@ class MyLoginView(LoginView):
     def get_success_url(self) -> str:
         return reverse_lazy('home')
     authentication_form = CustomAuthenticationForm
-    extra_context = {'password': 'lock', 'username': 'user'}
 
 
 def register(request, *args, **kwargs):
+    if request.user.is_authenticated :
+        return redirect('home')
     form = RegisterForm(request.POST or None)
     if request.POST:
         if form.is_valid():
