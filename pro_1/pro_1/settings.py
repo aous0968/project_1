@@ -31,6 +31,7 @@ DEBUG = env('DEBUG', default=False)
 
 ALLOWED_HOSTS = []
 
+LOGOUT_REDIRECT_URL = 'My_login'
 
 # Application definition
 

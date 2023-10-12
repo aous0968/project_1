@@ -1,6 +1,31 @@
 {% extends "base.html" %}
 
 {% block content %}
-    
-    {{form.as_p}}
+<div class="d-flex justify-content-center form-container">
+      
+    <form method="POST" class="form-control login-form">
+      {% csrf_token %}
+
+       {% if form.non_field_errors %}
+          <div class="alert alert-danger">{{form.non_field_errors}}</div>
+      {% endif %}
+      
+      <div class="mb-3">
+
+        {% for field in form %}
+
+            <div>{{field.label_tag}}</div>
+
+            <div class="login-input" id="{{field.name}}">
+              {{field}}
+            </div>
+            
+            {{field.errors}}
+
+        {% endfor %}
+
+        <button type="submit" class="btn btn-auth-form mt-3">Login</button>
+      </div>
+    </form>
+  </div>
 {% endblock content %}
