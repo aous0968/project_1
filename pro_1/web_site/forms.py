@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
+from django.contrib.auth.password_validation import validate_password
 
 class CustomAuthenticationForm(AuthenticationForm):
 
@@ -71,3 +72,6 @@ class RegisterForm(forms.Form):
             raise forms.ValidationError(
                 "password and confirm_password does not match"
             )
+        
+        if validate_password(password ,user=None,password_validators=None) != None:
+            raise forms.ValidationError
