@@ -20,7 +20,7 @@
         <div class="mb-3">
 
           {% for field in form %}
-
+            <div id="{{field.label}}">
               <div>{{field.label_tag|title}}</div>
 
               <div class="login-input" id="{{field.name}}">
@@ -28,7 +28,7 @@
               </div>
               
               {{field.errors}}
-
+            </div>
           {% endfor %}
           <div class="mt-1"><a href="{% url 'password_reset' %}">Did you forget your password ?</a></div>
           <button type="submit" class="btn btn-auth-form mt-3">Login</button>

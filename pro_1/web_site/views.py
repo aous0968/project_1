@@ -1,14 +1,18 @@
+import json
 from .forms import RegisterForm, CustomAuthenticationForm
 
 from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
 from django.contrib.auth import get_user_model, authenticate, login
-from django.contrib.auth.views import LoginView , PasswordResetView
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView, PasswordResetView
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.messages.views import SuccessMessageMixin
-
 from django.urls import reverse_lazy
+
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -27,6 +31,28 @@ class MyLoginView(LoginView):
     authentication_form = CustomAuthenticationForm
 
 
+@csrf_exempt
+def username_validation(request):
+    print(request)
+    if request.method == "POST":
+        user_name = request.POST.get('req_data')
+        print(user_name)
+        data = {
+            "massage": "The user name is valid.",
+            "good": True
+        }
+        try:
+            User.objects.get(username=user_name)
+        except User.DoesNotExist:
+            data["massage"] = "the user name does not exist."
+            data["good"] = False
+            return HttpResponse(json.dumps(data))
+
+        return HttpResponse(json.dumps(data))
+
+    return HttpResponse("the method is not post.")
+
+
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'registration/reset/password_reset.html'
     email_template_name = 'registration/reset/password_reset_email.html'
@@ -39,7 +65,7 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
 
 
 def register(request, *args, **kwargs):
-    if request.user.is_authenticated :
+    if request.user.is_authenticated:
         return redirect('home')
     form = RegisterForm(request.POST or None)
     if request.POST:
