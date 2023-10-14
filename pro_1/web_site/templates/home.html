@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block stylesheets  %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "css/home.css" %}?v=0.1"/>
+{% endblock %}
+{% block content %}
+    <div class="container" style="color:white !important">
+        <div class="row ">
+            <div class="col-12 header-home">
+                <div class="header-home-content">
+                    This project is for django training, it's include many projects in one. 
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+
+            <div class="col-md-3 col-12 card my-card" id="Quiz_app">
+                <div class="app-name" id="Quiz_app_name">Quiz App</div>
+                <img src="{% static "imgs/quiz.png" %}">
+            </div>
+            <div class="col-md-3 col-12 card my-card" id="1_app">
+                <div class="app-name" id="1_app_name">APP</div>
+                <img src="{% static "imgs/quiz.png" %}">
+            </div>
+            <div class="col-md-3 col-12 card my-card" id="2_app">
+                <div class="app-name" id="2_app_name">APP</div>
+                <img src="{% static "imgs/quiz.png" %}">
+            </div>
+
+        </div class="row">
+        <div class="row"><div>Acount</div></div>
+        <div class="row"><div>Acount</div></div>
+        <div class="row"><div>Acount</div></div>
+    <div>
+{% endblock %}
+
+{% block javascripts %}
+        {{ block.super }}
+        <script src="{% static "js/home.js" %}"></script>
+{% endblock %}

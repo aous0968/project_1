@@ -22,6 +22,7 @@ from web_site.views import (
     home,
     register,
     username_validation,
+    username_unique,
     MyLoginView,
     ResetPasswordView,
 )
@@ -30,6 +31,7 @@ from web_site.views import (
 urlpatterns = [
     path("", home, name="home"),
     path("register/", register, name="register"),
+    path("register/username-unique/", username_unique , name="username_unique"),
     path("login/", MyLoginView.as_view(), name="My_login"),
     path("login/username-validation/", username_validation , name="username_validation"),
     path("logout/", auth_views.LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name="logout"),

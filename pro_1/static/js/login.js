@@ -18,7 +18,6 @@ password.append(pass_icon);
 /* ///////////////////////////////////// */
 
 const username_validation_div = document.createElement("div");
-username_validation_div.classList.add("alert");
 $("#Username").append(username_validation_div);
 
 
@@ -49,11 +48,11 @@ var success = function (response, req_div) {
   req_div.innerHTML = response["massage"];
   if (response["good"]) {
     if (!req_div.classList.replace("alert-danger", "alert-success")) {
-      req_div.classList.add("alert-success");
+      req_div.classList.add("alert-success" , "alert");
     }
   } else {
     if (!req_div.classList.replace("alert-success", "alert-danger")) {
-      req_div.classList.add("alert-danger");
+      req_div.classList.add("alert-danger" , "alert");
     }
   }
 }

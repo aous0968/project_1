@@ -33,10 +33,8 @@ class MyLoginView(LoginView):
 
 @csrf_exempt
 def username_validation(request):
-    print(request)
     if request.method == "POST":
         user_name = request.POST.get('req_data')
-        print(user_name)
         data = {
             "massage": "The user name is valid.",
             "good": True
@@ -83,3 +81,22 @@ def register(request, *args, **kwargs):
 
     context = {'form': form}
     return render(request, "registration/register.html", context)
+
+@csrf_exempt
+def username_unique(request):
+    if request.method == "POST":
+        user_name = request.POST.get('req_data')
+        data = {
+            "massage": "There is a user with this user name.",
+            "good": False
+        }
+        try:
+            User.objects.get(username=user_name)
+        except User.DoesNotExist:
+            data["massage"] = "the user name is valid."
+            data["good"] = True
+            return HttpResponse(json.dumps(data))
+
+        return HttpResponse(json.dumps(data))
+
+    return HttpResponse("the method is not post.")

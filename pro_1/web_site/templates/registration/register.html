@@ -22,7 +22,7 @@
       <div class="mb-3">
 
         {% for field in form %}
-
+        <div id="{{field.label}}">
             <div>{{field.label_tag|title}}</div>
 
             <div class="login-input" id="{{field.name}}">
@@ -33,7 +33,7 @@
               {{field.errors}}
             </div>
             {% endif %}
-
+        </div>
         {% endfor %}
 
         <button type="submit" class="btn btn-auth-form mt-3">Sign Up</button>
